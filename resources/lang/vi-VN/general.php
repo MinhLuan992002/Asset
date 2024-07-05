@@ -336,7 +336,7 @@ return [
     'clear_signature'       => 'Xóa chữ ký',
     'show_help'             => 'Hiển thị trợ giúp',
     'hide_help'             => 'Ẩn trợ giúp',
-    'view_all'              => 'v all',
+    'view_all'              => 'view all',
     'hide_deleted'          => 'Ẩn đã xóa',
     'email'                 => 'Email',
     'do_not_change'         => 'Không được thay đổi',

@@ -114,18 +114,22 @@ class Helper
      * @since [v2.0]
      * @return string
      */
-    public static function formatCurrencyOutput($cost)
-    {
-        if (is_numeric($cost)) {
+public static function formatCurrencyOutput($cost)
+{
+    if (is_numeric($cost)) {
+        if (Setting::getSettings()->digit_separator == '1.234,56') {
 
-            if (Setting::getSettings()->digit_separator=='1.234,56') {
-                return number_format($cost, 2, ',', '.');
-            }
-            return number_format($cost, 2, '.', ',');
+            return number_format($cost, 0, ',', '.') . ' VND';
+        } else {
+
+            return number_format($cost, 0, '.', ',') . ' VND';
         }
-        // It's already been parsed.
-        return $cost;
     }
+
+
+    return $cost;
+}
+
 
 
     /**

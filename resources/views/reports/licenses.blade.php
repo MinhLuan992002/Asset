@@ -45,7 +45,6 @@
                                 <th class="col-sm-1 text-right">{{ trans('admin/hardware/table.diff') }}</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             @foreach ($licenses as $license)
                             <tr>
@@ -60,32 +59,31 @@
                                 </td>
                                 <td>{{ $license->seats }}</td>
                                 <td>{{ $license->remaincount() }}</td>
-                                <td>{{ $license->expiration_date }}</td>
-                                <td>{{ $license->purchase_date }}</td>
+                                <td>{{ $license->expiration_date->format('Y-m-d') }}</td>
+                                <td>{{ $license->purchase_date->format('Y-m-d') }}</td>
+
                                 <td class="text-right">
-                                    {{ $snipeSettings->default_currency }}{{ Helper::formatCurrencyOutput($license->purchase_cost) }}
+                                    {{ number_format($license->purchase_cost,0, '.', '.') }} {{ $snipeSettings->default_currency }}
                                 </td>
                                 <td>
-                                    {{ ($license->depreciation) ? e($license->depreciation->name).' ('.$license->depreciation->months.' '.trans('general.months').')' : ''  }}
+                                    {{ ($license->depreciation) ? e($license->depreciation->name).' ('.$license->depreciation->months.' '.trans('general.months').')' : '' }}
                                 </td>
                                 <td class="text-right">
-                                    {{ $snipeSettings->default_currency }}{{ Helper::formatCurrencyOutput($license->getDepreciatedValue()) }}
+                                    {{ number_format($license->getDepreciatedValue(),0, '.', '.') }} {{ $snipeSettings->default_currency }}
                                 </td>
                                 <td class="text-right">
-                                    -{{ $snipeSettings->default_currency }}{{ Helper::formatCurrencyOutput(($license->purchase_cost - $license->getDepreciatedValue())) }}
+                                    - {{ number_format(($license->purchase_cost - $license->getDepreciatedValue()),0, '.', '.') }} {{ $snipeSettings->default_currency }}
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                </div> <!-- /.table-responsive-->
+                    </div> <!-- /.table-responsive-->
             </div>
         </div>
     </div>
 </div>
-
 @stop
-
 @section('moar_scripts')
     @include ('partials.bootstrap-table')
 @stop

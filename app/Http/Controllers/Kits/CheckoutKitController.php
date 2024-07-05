@@ -28,7 +28,6 @@ class CheckoutKitController extends Controller
     {
         $this->kitService = $kitService;
     }
-
     /**
      * Show Bulk Checkout Page
      *
